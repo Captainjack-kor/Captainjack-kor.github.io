@@ -1,13 +1,13 @@
 # site settings
 
-title: 임현택
-description: test
-taglong: 현재 코드벡터에서 Web & App 모의 해킹 컨설턴트 업무를 하고 있는 임현택입니다. \n 오늘보다 내일 더 성장하는 삶을 목표로 하고 있습니다.
+title: cvless
+description: Jekyll theme for a beautiful online CV
+taglong: Jekyll theme for a beautiful online CV
 tagshort: Jekyll theme
 url: https://cvless.netlify.app
 baseurl: ""
 permalink: pretty
-repo: https://github.com/Captainjack-kor/Captainjack-kor.github.io
+repo: https://github.com/username/username.github.io
 
 # author settings
 
