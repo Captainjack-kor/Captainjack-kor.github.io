@@ -3,8 +3,6 @@ layout: home
 title: Home
 ---
 
-# About
+<!-- # About -->
 
-123123
-
-<!-- {% include archive.html %} -->
+{% include archive.html %}

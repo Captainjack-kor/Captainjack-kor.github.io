@@ -1,12 +1,174 @@
-{% assign postsByYearMonth = site.posts | group_by_exp: "post", "post.date | date: '%B %Y'" %}
-
 <div class="archive">
-  {% for yearMonth in postsByYearMonth %}
-  <h2>{{ yearMonth.name }}</h2>
-  <ul>
-    {% for post in yearMonth.items %}
-    <li><a href="{{ post.url }}">{{ post.title }}.</a> <span class="lead">{{ post.lead }}</span></li>
-    {% endfor %}
-  </ul>
-  {% endfor %}
+  <div class="section py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-primary">Speaker</h2>
+                <ul>
+                    <br>
+                    <li>
+                        <strong>CodeGate 2019 <small>(First prize was awarded)</small>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <img src="/static/codegate.ico" style="width: 30px;height: auto;margin-top: -3;margin-left: -10;">
+                        </strong>
+                        <ul>
+                            <li><em>Title</em>: PHP Trick Trip</li>
+                            <li><em>Content</em>: <font style="font-size: 14px;">PHP의 여러 보안 이슈와 취약점을 통해 웹 해킹 공격으로 이어질 수 있는 버그에 대해 다루며,<br>
+                            &nbsp;Zend 엔진을 분석해본 경험을 토대로 버그가 발생하는 논리적 이유와 이를 분석했던 과정을 소개하는 발표</font></li>
+                            <li><em>Date</em>: 2019.03.27</li>
+                            <li><em>Detail</em>: <small><a href="http://blog.munsiwoo.kr/2019/03/codegate2019-seminar/">후기</a>, <a href="http://www.codegate.org/">코드게이트 홈페이지</a>, <a href="/PHP_Trick_Trip.pdf">발표자료(pdf)</a></small></li>
+                            <li><em>Award</em>: <small>발표 최우수상, 한국인터넷진흥원장상</small></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <br>
+                    <li>
+                        <strong>빗썸 청소년 사이버 보안 캠프, <em>Bithumb</em>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <img src="/static/bithumb-logo-wci.jpg" style="width: 30px;height: auto;margin-top: -3;margin-left: -10;">
+                        </strong>
+                        <ul>
+                            <li><em>Title</em>: 쉽고 간단하게 배워보는 정보보안 Tip</li>
+                            <li><em>Content</em>: <font style="font-size: 14px;">개인정보가 유출될 수 있는 여러 상황을 예를들며 이를 사전에 예방하는 방법을 소개하는 발표</font></li>
+                            <li><em>Date</em>: 2018.11.23</li>
+                            <li><em>Detail</em>: <small><a href="http://www.ebn.co.kr/news/view/963666" target="_blank">인터넷 기사</a>, <a href="https://www.bithumb.com/" target="_blank">빗썸 홈페이지</a></small></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <br>
+                    <li>
+                        <strong>HackingCamp 18, <em>PoC Security</em>&nbsp;&nbsp;&nbsp;&nbsp;
+                            <img src="/static/hackingcamp.png" style="width: 25px;height: auto;">
+                        </strong>
+                        <ul>
+                            <li><em>Title</em>: Security option bypass 101</li>
+                            <li><em>Content</em>: <font style="font-size: 14px;">PHP의 open_basedir, disable_functions 옵션을 우회하는 여러 방법에 대해 소개하는 발표</font></li>
+                            <li><em>Date</em>: 2018.09.02</li>
+                            <li><em>Detail</em>: <small><a href="http://hackingcamp.org/" target="_blank">해킹캠프 홈페이지</a></small></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="section py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-primary">Organizer</h2>
+                <ul>
+                    <br>
+                    <li><strong>2019</strong>
+                        <ul>
+                            <li>2019 Belluminar CTF 문제 출제</li>
+                            <li>2019 Christmas CTF (사이트 개발, 문제 출제, 운영) - <a href="https://github.com/munsiwoo/christmas-ctf-platform">@munsiwoo/christmas-ctf-platform</a></li>
+                            <li>2019 Layer7 CTF (사이트 개발, 운영)</li>
+                            <li>2019 선린인터넷고등학교 고등해커 (예선/본선 운영, 사이트 개발, 문제 출제)</li>
+                            <li>2019 선린인터넷고등학교 교내해킹방어대회 (문제 출제- <a href="https://github.com/munsiwoo/ctf-web-prob/tree/master/2019/Sunrin_Internet_High_School_CTF_2019">Github</a>)</li>
+                        </ul>
+                    </li>
+                    <br>
+                    <li><strong>2018</strong>
+                        <ul>
+                            <li>2018 선린인터넷고등학교 고등해커 (예선/본선 운영, 사이트 구현, 문제 출제)</li>
+                            <li>2018 선린인터넷고등학교 교내해킹방어대회 (운영, 문제 출제)</li>
+                            <li>PoC Security HackingCamp18 CTF (문제 출제 - <a href="https://github.com/munsiwoo/ctf-web-prob/tree/master/2018/hackingcamp18">Github</a>)</li>
+                            <li>2018 Layer7 CTF (대회 운영, 문제 출제, 
+                            <a href="https://github.com/munsiwoo/ctf-web-prob/tree/master/2018/2018_Layer7_CTF_Margaret"> Github</a>)</li>
+                            <li>2018 H3X0R CTF (문제 출제 - <a href="https://github.com/munsiwoo/ctf-web-prob/tree/master/2018/H3X0R-CTF-2018">Github</a>)</li>
+                        </ul>
+                    </li>
+                    <br>
+                    <li><strong>2017</strong>
+                        <ul>
+                            <li>2017 PoC Security Belluminar CTF (대회 참가, 문제 출제, 
+                            <a href="https://github.com/munsiwoo/ctf-web-prob/tree/master/2017/Belluminar2017"> Github</a>)</li>
+                            <li>2017 PoC Security Power of XX (문제 출제,
+                            <a href="https://github.com/munsiwoo/ctf-web-prob/tree/master/2017/power_of_xx_2017"> Github</a>)</li>
+                            <li>2017 Layer7 CTF (대회 운영, 문제 출제,
+                            <a href="https://github.com/munsiwoo/ctf-web-prob/tree/master/2017/layer7_external2017"> Github</a>)</li>
+                            <li>2017 H3X0R CTF (대회 운영, 문제 출제)</li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="section py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="text-primary">Projects</h2>
+                <ul>
+                    <br>
+                    <li><strong>2019</strong>
+                        <ul>
+                            <li>PHP CTF Platform, <small><a href="https://github.com/munsiwoo/christmas-ctf-platform">GitHub</a></small></li>
+                            <li>Automatic Analysis for Node.js Modules, <small>(Best of the best 8th / NerdJS)</small>
+                                <ul>
+                                    <li>
+                                        <small>DAPP: automatic detection and analysis of prototype pollution vulnerability in Node.js modules<br>
+                                        Springer, International Journal of Information Security (IJIS) (SCIE)에 게재<br>
+                                        <a href="https://link.springer.com/article/10.1007/s10207-020-00537-0">https://link.springer.com/article/10.1007/s10207-020-00537-0</a>
+                                        </small>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>PHP Trick Trip, <small>(Presented at the codegate 2019, <a href="https://github.com/munsiwoo/php-trick-trip" target="_blank">GitHub</a>)</small></li>
+                            <li>Munfoozer, <small>Dynamic XSS fuzzer</small></li>
+                        </ul>
+                    </li>
+                    <br>
+                    <li><strong>2018</strong>
+                        <ul>
+                            <li>Simple MVC Framework in PHP, <small><a href="https://github.com/munsiwoo/simple-mvc-in-php" target="_blank">GitHub</a></small></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="py-3 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card my-1">
+                    <div class="card-block text-xs-center">
+                        <h3 class="card-title">GitHub <img src="/static/git.png" style="width:25px;height:auto;"></h3>
+                        <p><a href="https://github.com/munsiwoo">@munsiwoo</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card my-1">
+                    <div class="card-block text-xs-center">
+                        <h3 class="card-title">Facebook <img src="/static/fb.png" style="width:25px;height:auto;"></h3>
+                        <p><a href="https://fb.com/munsiwoo">fb.com/munsiwoo</a></p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card my-1">
+                    <div class="card-block text-xs-center">
+                        <h3 class="card-title">Blog <img src="/static/favicon.png" style="width:25px;height:auto;"></h3>
+                        <p><a href="http://blog.munsiwoo.kr">blog.munsiwoo.kr</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
