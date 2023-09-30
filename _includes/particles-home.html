@@ -1,15 +1,14 @@
 <div id="particles-js" class="fullscreen">
   <div class="jumbotron text-center">
-    {% if site.photo %}
-    <img class="particles-photo" src="{{ site.photo }}" />
-    {% endif %}
+    <img class="particles-photo" src="../assets/jpg/photo.jpg" />
+   
     <h1 class="particles-title">{{ site.title }}</h1>
     <h1 class="particles-subtitle">{{ site.taglong }}</h1>
     <div class="nowrap">
       {% if site.social.facebook %}
       {% endif %}
       {% if site.social.twitter %}
-      <a class="particles-icon" href="https://velog.io/@iooi75">{% include svg/cv-circled.svg %}</a>
+      <a class="particles-icon" href="https://velog.io/@iooi75">{% include svg/twitter.svg %}</a>
       {% endif %}
       {% if site.social.instagram %}      
       {% endif %}
