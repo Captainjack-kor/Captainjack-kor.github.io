@@ -1,13 +1,13 @@
 # site settings
 
-title: cvless
+title: 임현택
 description: Jekyll theme for a beautiful online CV
 taglong: Jekyll theme for a beautiful online CV
 tagshort: Jekyll theme
 url: https://cvless.netlify.app
 baseurl: ""
 permalink: pretty
-repo: https://github.com/username/username.github.io
+repo: https://github.com/Captainjack-kor/Captainjack-kor.github.io
 
 # author settings
 
