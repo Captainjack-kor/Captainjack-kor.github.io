@@ -46,7 +46,12 @@ const defaultOptions: Options = {
       return -1
     }
   },
-  filterFn: (node) => node.slugSegment !== "tags",
+  filterFn: (node) => {
+    const segments = node.slug.split("/")
+    const isFolderNote =
+      segments.length >= 2 && segments[segments.length - 1] === segments[segments.length - 2]
+    return node.slugSegment !== "tags" && !isFolderNote
+  },
   order: ["filter", "map", "sort"],
 }
 

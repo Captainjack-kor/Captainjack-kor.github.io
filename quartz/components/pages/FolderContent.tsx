@@ -41,6 +41,11 @@ export default ((opts?: Partial<FolderContentOptions>) => {
         .map((node) => {
           // regular file, proceed
           if (node.data) {
+            // Filter out files that have the same name as the folder they are in
+            const folderName = folder.slugSegment
+            if (node.slugSegment === folderName && node.data.title === folderName) {
+              return undefined
+            }
             return node.data
           }
 
