@@ -126,24 +126,14 @@ button.desktop-explorer {
       overscroll-behavior: contain;
     }
 
-      & li > a {
+    & li > a {
       color: var(--dark);
       opacity: 0.75;
       pointer-events: all;
-      position: relative;
-      display: inline-block;
 
       &.active {
         opacity: 1;
-        color: #ff0000; // Red color
-        font-weight: bold;
-        
-        &::before {
-          content: "->";
-          position: absolute;
-          left: -20px;
-          color: #ff0000;
-        }
+        color: var(--tertiary);
       }
     }
   }
