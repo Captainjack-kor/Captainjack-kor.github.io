@@ -44,6 +44,40 @@ table {
   font-size: 0.92rem;
 }
 
+// ===== Contact: icon chips in a tight row =====
+.contact {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0.3rem 0 0.6rem;
+}
+.contact a.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.28rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  background: var(--highlight);
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.contact a.contact-link:hover {
+  background: var(--secondary);
+  color: var(--light);
+}
+.contact a.contact-link svg {
+  width: 1rem;
+  height: 1rem;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
 // ===== Explorer: active (clicked) document link — strong red =====
 .explorer {
   ul li > a.active {
