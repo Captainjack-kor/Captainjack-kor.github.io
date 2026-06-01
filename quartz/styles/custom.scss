@@ -1,3 +1,58 @@
 @use "./base.scss";
 
-// put your custom CSS here!
+// ===== Resume / personal page helpers =====
+
+// Severity & emphasis text colors (work in both light/dark mode)
+.crit {
+  color: #dc2626;
+  font-weight: 700;
+}
+.high {
+  color: #ea580c;
+  font-weight: 700;
+}
+.sev {
+  color: #16a34a;
+  font-weight: 600;
+}
+.muted {
+  color: var(--gray);
+}
+
+:root[saved-theme="dark"] {
+  .crit { color: #f87171; }
+  .high { color: #fb923c; }
+  .sev  { color: #4ade80; }
+}
+
+// Inline "pill" badges for skills / tags
+.pill {
+  display: inline-block;
+  padding: 0.1rem 0.55rem;
+  margin: 0.15rem 0.2rem 0.15rem 0;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.6;
+  background: var(--highlight);
+  color: var(--secondary);
+  border: 1px solid var(--secondary);
+}
+
+// Tighten the contribution table a touch
+table {
+  font-size: 0.92rem;
+}
+
+// ===== Explorer: active (clicked) document link — strong red =====
+.explorer {
+  ul li > a.active {
+    color: #dc2626 !important;
+    font-weight: 700;
+    opacity: 1;
+  }
+}
+
+:root[saved-theme="dark"] .explorer ul li > a.active {
+  color: #f43f5e !important; // brighter red for dark background
+}

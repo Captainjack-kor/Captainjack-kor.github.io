@@ -1,6 +1,23 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 
+// Shared Explorer options: pin "About me" to the very top, keep default order otherwise
+const explorerOptions = {
+  title: "Contents",
+  sortFn: (a: any, b: any) => {
+    if (a.slug === "About-me") return -1
+    if (b.slug === "About-me") return 1
+    // default Quartz order: folders first, then alphabetical (numeric-aware)
+    if ((!a.isFolder && !b.isFolder) || (a.isFolder && b.isFolder)) {
+      return a.displayName.localeCompare(b.displayName, undefined, {
+        numeric: true,
+        sensitivity: "base",
+      })
+    }
+    return !a.isFolder && b.isFolder ? 1 : -1
+  },
+}
+
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
@@ -37,7 +54,7 @@ export const defaultContentPageLayout: PageLayout = {
         { Component: Component.ReaderMode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer(explorerOptions),
   ],
   right: [
     Component.Graph(),
@@ -61,7 +78,7 @@ export const defaultListPageLayout: PageLayout = {
         { Component: Component.Darkmode() },
       ],
     }),
-    Component.Explorer(),
+    Component.Explorer(explorerOptions),
   ],
   right: [],
 }
