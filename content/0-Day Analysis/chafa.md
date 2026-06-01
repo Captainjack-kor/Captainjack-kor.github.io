@@ -45,12 +45,14 @@ Because `256 * (width + 5) * n_sixel_rows + 1` is evaluated in 32-bit signed ari
 - a **very large** number → out-of-memory abort (DoS), or
 - a **small positive** number → undersized allocation → **heap buffer overflow**.
 
-The same pattern affects line 384:
+A related allocation at line 384 multiplies the same unchecked `width`, but its arithmetic differs:
 
 ```c
 // chafa/internal/chafa-sixel-renderer.c:384
 srow.data = g_malloc(sizeof(SixelData) * ctx->sixel_renderer->width);
 ```
+
+Here `sizeof(SixelData)` is a `gsize` (64-bit), so `width` is promoted and the multiplication is performed in **64-bit** arithmetic. For a positive `width` this does **not** wrap in 32-bit — it merely requests a large allocation (a DoS lever, not an undersized buffer). It only turns dangerous if `width_pixels` (computed in `gint` at `chafa-canvas.c:542`) has already wrapped negative, in which case the negative value converts to a huge `gsize`. The undersized-allocation primitive is therefore specific to **line 387**.
 
 ### Width propagation — user input reaches the allocation unchecked
 
@@ -86,7 +88,7 @@ INT_MAX                        = 2,147,483,647
 
 Overflow:  2,150,402,561 > INT_MAX
 gint (wrap):   -2,144,564,735
-→ gsize:       0xFFFFFFFF80063601   → huge allocation → OOM
+→ gsize:       0xFFFFFFFF802C8A01   → huge allocation → OOM
 ```
 
 ### Overflow arithmetic — "magic width" path (heap overflow)
@@ -96,12 +98,13 @@ A carefully chosen width wraps the expression to a **small positive integer**, s
 ```text
 Target:  256 × (w + 5) × 2  ≡  small_value (mod 2^32)
 
-Example: w = 8,388,604
-  512 × (8,388,604 + 5) = 512 × 8,388,609 = 4,295,027,008
-  4,295,027,008 mod 2^32 = 59,712
-  g_malloc(59,713)                       ← allocated
-  actual write ≈ 256 × 8,388,609 × 2 ≈ 4.3 GB of sixel data
-  → heap buffer overflow of several MB
+Example: w = 8,388,604   (= 2^23 − 4)
+  512 × (8,388,604 + 5) = 512 × 8,388,609 = 2^32 + 512 = 4,294,967,808
+  + 1                                    → 4,294,967,809
+  truncated to 32-bit (mod 2^32)         → 513
+  g_malloc(513)                          ← allocated (just 513 bytes)
+  actual write ≈ 256 × 8,388,609 × 2 ≈ 4.29 GB of sixel data
+  → heap buffer overflow of several GB
 ```
 
 ### Write-primitive analysis
