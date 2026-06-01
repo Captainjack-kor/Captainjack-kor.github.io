@@ -9,14 +9,6 @@ reporter: Hyeontaek Lim (Captainjack)
 date: 2026-04-17
 ---
 
-| | |
-| --- | --- |
-| **Severity** | <span class="sev">Moderate (5.3)</span> |
-| **Type** | CWE-401 — Missing Release of Memory after Effective Lifetime |
-| **Affected** | `ext/nokogiri/xslt_stylesheet.c` · `lib/nokogiri/xslt.rb` |
-| **CVE** | TBD |
-| **Advisory** | [GHSA-v2fc-qm4h-8hqv](https://github.com/sparklemotion/nokogiri/security/advisories/GHSA-v2fc-qm4h-8hqv) |
-
 ## Summary
 
 `Nokogiri::XSLT.quote_params` does not sanitize null bytes in parameter values.
