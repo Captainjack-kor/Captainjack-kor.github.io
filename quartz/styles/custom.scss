@@ -44,6 +44,11 @@ table {
   font-size: 0.92rem;
 }
 
+// Keep CVE IDs (and similar) from breaking across lines
+.nowrap {
+  white-space: nowrap;
+}
+
 // ===== Contact: icon chips in a tight row =====
 .contact {
   display: flex;
@@ -89,4 +94,43 @@ table {
 
 :root[saved-theme="dark"] .explorer ul li > a.active {
   color: #f43f5e !important; // brighter red for dark background
+}
+
+// ===== Explorer: roomier rows & clearer separation =====
+.explorer-content {
+  // breathing room + hover affordance for file links (not folder titles)
+  & ul li > a {
+    display: block;
+    padding: 0.22rem 0.45rem;
+    border-radius: 6px;
+    line-height: 1.35;
+    opacity: 0.9; // less faint than default 0.75 → easier to scan
+    transition: background 0.12s ease, color 0.12s ease, opacity 0.12s ease;
+  }
+
+  & ul li > a:hover {
+    background: var(--highlight);
+    opacity: 1;
+  }
+
+  // a little vertical gap between every row
+  & ul li {
+    margin: 0.1rem 0;
+  }
+
+  // extra space before each top-level folder so sections read as groups
+  & > ul.explorer-ul > li {
+    margin-top: 0.5rem;
+  }
+}
+
+// folder header rows: padded + hover highlight to stand out as section titles
+.folder-container {
+  padding: 0.18rem 0.3rem;
+  border-radius: 6px;
+  transition: background 0.12s ease;
+
+  &:hover {
+    background: var(--highlight);
+  }
 }

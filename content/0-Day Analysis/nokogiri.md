@@ -2,12 +2,23 @@
 title: "Nokogiri — XSLT quote_params Null Byte Memory Leak"
 severity: Moderate (5.3)
 type: CWE-401 (Missing Release of Memory)
-affected_version: "1.19.0"
+affected_version: "< 1.19.3 (analyzed on 1.19.0)"
+patched_version: "1.19.3"
 affected_file: ext/nokogiri/xslt_stylesheet.c
 affected_function: rb_xslt_stylesheet_transform (line 282)
 reporter: Hyeontaek Lim (Captainjack)
 date: 2026-04-17
 ---
+
+| | |
+| --- | --- |
+| **Severity** | <span class="sev">Moderate (5.3)</span> |
+| **Type** | CWE-401 (Missing Release of Memory) → Denial of Service |
+| **CVE** | TBD *(not yet assigned)* |
+| **Affected** | `nokogiri` < 1.19.3 *(analyzed on 1.19.0)* |
+| **Affected file** | `ext/nokogiri/xslt_stylesheet.c` → `rb_xslt_stylesheet_transform()` (line 282) |
+| **Patched** | 1.19.3 |
+| **Advisory** | [GHSA-v2fc-qm4h-8hqv](https://github.com/sparklemotion/nokogiri/security/advisories/GHSA-v2fc-qm4h-8hqv) |
 
 ## Summary
 
