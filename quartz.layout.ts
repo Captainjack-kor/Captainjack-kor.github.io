@@ -1,27 +1,65 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
 
-// Shared Explorer options: pin "About me" to the very top, keep default order otherwise
-const explorerOptions = {
-  title: "Contents",
-  sortFn: (a: any, b: any) => {
-    if (a.slug === "About-me") return -1
-    if (b.slug === "About-me") return 1
-    // default Quartz order: folders first, then alphabetical (numeric-aware)
-    if ((!a.isFolder && !b.isFolder) || (a.isFolder && b.isFolder)) {
-      return a.displayName.localeCompare(b.displayName, undefined, {
-        numeric: true,
-        sensitivity: "base",
-      })
-    }
-    return !a.isFolder && b.isFolder ? 1 : -1
-  },
+// Pin "<lang>/About-me" to the very top; otherwise folders-first + numeric-aware alpha.
+// NOTE: sortFn/filterFn are serialized via .toString() and run in the browser, so they
+// must be fully self-contained (no references to outer variables).
+const sortFn = (a: any, b: any) => {
+  const aAbout = a.slug === "About-me" || a.slug.endsWith("/About-me")
+  const bAbout = b.slug === "About-me" || b.slug.endsWith("/About-me")
+  if (aAbout && !bAbout) return -1
+  if (bAbout && !aAbout) return 1
+  if ((!a.isFolder && !b.isFolder) || (a.isFolder && b.isFolder)) {
+    return a.displayName.localeCompare(b.displayName, undefined, {
+      numeric: true,
+      sensitivity: "base",
+    })
+  }
+  return !a.isFolder && b.isFolder ? 1 : -1
 }
+
+// Per-language explorers: each keeps only its own language subtree (en/ or ko/),
+// while preserving Quartz's default exclusion of tags + folder notes.
+const enExplorer = Component.Explorer({
+  title: "Contents",
+  folderDefaultState: "open",
+  sortFn,
+  filterFn: (node: any) => {
+    const segs = node.slug.split("/")
+    const isFolderNote =
+      segs.length >= 2 && segs[segs.length - 1] === segs[segs.length - 2]
+    return segs[0] === "en" && node.slugSegment !== "tags" && !isFolderNote
+  },
+})
+
+const koExplorer = Component.Explorer({
+  title: "목차",
+  folderDefaultState: "open",
+  sortFn,
+  filterFn: (node: any) => {
+    const segs = node.slug.split("/")
+    const isFolderNote =
+      segs.length >= 2 && segs[segs.length - 1] === segs[segs.length - 2]
+    return segs[0] === "ko" && node.slugSegment !== "tags" && !isFolderNote
+  },
+})
+
+// Render the KO explorer on ko/ pages, the EN explorer everywhere else (default).
+const languageExplorers = [
+  Component.ConditionalRender({
+    component: koExplorer,
+    condition: (page) => !!page.fileData.slug?.startsWith("ko/"),
+  }),
+  Component.ConditionalRender({
+    component: enExplorer,
+    condition: (page) => !page.fileData.slug?.startsWith("ko/"),
+  }),
+]
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
   head: Component.Head(),
-  header: [],
+  header: [Component.LangToggle(), Component.Darkmode(), Component.ReaderMode()],
   afterBody: [],
   footer: Component.Footer({
     links: {
@@ -44,17 +82,8 @@ export const defaultContentPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
-    Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        { Component: Component.Darkmode() },
-        { Component: Component.ReaderMode() },
-      ],
-    }),
-    Component.Explorer(explorerOptions),
+    Component.Search(),
+    ...languageExplorers,
   ],
   right: [
     Component.Graph(),
@@ -69,16 +98,8 @@ export const defaultListPageLayout: PageLayout = {
   left: [
     Component.PageTitle(),
     Component.MobileOnly(Component.Spacer()),
-    Component.Flex({
-      components: [
-        {
-          Component: Component.Search(),
-          grow: true,
-        },
-        { Component: Component.Darkmode() },
-      ],
-    }),
-    Component.Explorer(explorerOptions),
+    Component.Search(),
+    ...languageExplorers,
   ],
   right: [],
 }

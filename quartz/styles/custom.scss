@@ -134,3 +134,38 @@ table {
     background: var(--highlight);
   }
 }
+
+// ===== Fixed full-width top bar (language + theme toggles) =====
+$topbarHeight: 2.8rem;
+
+// The page <header> holds only the toggle components (LangToggle, Darkmode,
+// ReaderMode). Pin it to the very top, spanning the full viewport width, above
+// the sidebars and content. Article title / breadcrumbs are siblings, so they
+// stay in the center column and are NOT pulled up.
+header {
+  position: fixed;
+  inset: 0 0 auto 0; // top:0 left:0 right:0
+  z-index: 100;
+  height: $topbarHeight;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1rem;
+  padding: 0 1.5rem;
+  background: var(--light);
+  border-bottom: 1px solid var(--lightgray);
+  backdrop-filter: saturate(1.1);
+}
+
+// push the page grid below the fixed bar (margin survives base's non-desktop padding reset)
+#quartz-root.page > #quartz-body {
+  margin-top: $topbarHeight;
+}
+
+// keep sticky sidebars below the bar instead of scrolling under it
+#quartz-root.page > #quartz-body .sidebar {
+  top: $topbarHeight;
+  height: calc(100vh - #{$topbarHeight});
+}

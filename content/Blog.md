@@ -1,3 +1,3 @@
 ---
-sticker: emoji//2618-fe0f
+sticker: emoji//1f4d5
 ---
