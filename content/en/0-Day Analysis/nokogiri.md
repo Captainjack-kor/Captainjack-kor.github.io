@@ -14,7 +14,7 @@ date: 2026-04-17
 | --- | --- |
 | **Severity** | <span class="sev">Moderate (5.3)</span> |
 | **Type** | CWE-401 (Missing Release of Memory) → Denial of Service |
-| **CVE** | TBD *(not yet assigned)* |
+| **CVE** | CVE-2026-79771 |
 | **Affected** | `nokogiri` < 1.19.3 *(analyzed on 1.19.0)* |
 | **Affected file** | `ext/nokogiri/xslt_stylesheet.c` → `rb_xslt_stylesheet_transform()` (line 282) |
 | **Patched** | 1.19.3 |
@@ -142,7 +142,7 @@ Any application that passes user-supplied input through `Nokogiri::XSLT.quote_pa
 | 2026-04-27 | Maintainer accepted the issue  |
 | 2026-04-28 | Maintainer fixed the issue     |
 | 2026-04-28 | Patch released                 |
-| TBD        | CVE assigned                   |
+| 2026-11    | CVE-2026-79771 assigned        |
 
 ## References
 
